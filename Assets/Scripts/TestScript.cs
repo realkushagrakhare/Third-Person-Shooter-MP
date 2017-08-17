@@ -15,15 +15,21 @@ public class TestScript : MonoBehaviour {
 	public int horizAngle;
 	public int vertAngle;
 	public int isSprint;
-	private Animator anim;
 	public Transform arms;
 	public float speed = 15f;
 	public float sensitivity = 1f;
-	private float yAimOffset;
-	private float xAimOffset;
+	public float yAimOffset;
+	public float xAimOffset;
+
+	private Animator anim;
+	private float previousXRot = -1.0f;
+	private float previousYRot = -1.0f;
+	private float tempRotY;
+	private float tempRotX;
 //	Quaternion temp = Quaternion.Inverse(Quaternion.identity);
 //	Quaternion temp2 = Quaternion.Inverse(Quaternion.identity);
 	private bool walked = false;
+	private bool isSprinting = false;
 	void Start () {
 		anim = GetComponent<Animator> ();
 	}
@@ -67,8 +73,16 @@ public class TestScript : MonoBehaviour {
 //		temp2.eulerAngles += new Vector3 (Mathf.Clamp(Input.GetAxis("RightAnalogVertical") * speed, -45.0f, 60f), 0f, 0f);
 //		arms.rotation = temp2;
 //		transform.rotation = temp;
-
-		if (Input.GetKey (KeyCode.W)) {
+		if (Input.GetKey (KeyCode.LeftShift)) {
+			anim.SetFloat (anim.GetParameter (verticalMagnitude).nameHash, 0.0f);
+			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, 0.0f);
+			anim.SetBool (anim.GetParameter (isSprint).nameHash, true);
+			isSprinting = true;
+		} else if (!Input.GetKey (KeyCode.LeftShift) && isSprinting) {
+			anim.SetBool (anim.GetParameter (isSprint).nameHash, false);
+			isSprinting = false;
+		}
+		else if (Input.GetKey (KeyCode.W) && !isSprinting) {
 			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, 1.0f);
 			anim.SetFloat (anim.GetParameter (verticalMagnitude).nameHash, 1.0f);
 			anim.SetBool (anim.GetParameter (isStopRU).nameHash, false);
@@ -80,10 +94,6 @@ public class TestScript : MonoBehaviour {
 			walked = false;
 		}
 
-		if (Input.GetKey (KeyCode.LeftShift)) {
-			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, 1.0f);
-			anim.SetBool (anim.GetParameter (isSprint).nameHash, true);
-		}
 
 //		if (Input.GetKey (KeyCode.S)) {
 //			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, -1.0f);
@@ -128,9 +138,15 @@ public class TestScript : MonoBehaviour {
 			anim.SetBool (anim.GetParameter (shootIndex).nameHash, false);
 		}
 
-		yAimOffset += Input.GetAxis("Vertical") * sensitivity;
-		anim.SetFloat (anim.GetParameter (vertAngle).nameHash, yAimOffset);
-		xAimOffset += Input.GetAxis("Horizontal") * sensitivity;
-		anim.SetFloat (anim.GetParameter (horizAngle).nameHash, xAimOffset);
+
+		if (Input.GetAxis ("Vertical") != previousYRot) {
+			yAimOffset += Input.GetAxis ("Vertical") * sensitivity;
+
+			anim.SetFloat (anim.GetParameter (vertAngle).nameHash, yAimOffset);
+			previousYRot = Input.GetAxis ("Vertical");
+			tempRotY = previousYRot;
+		} 
+
+		transform.Rotate (0f, Input.GetAxis("Horizontal") * sensitivity, 0f);
 	}
 }
