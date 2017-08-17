@@ -11,7 +11,7 @@ public class PlayerCamera : MonoBehaviour {
 	public float sensitivity;
 	private Camera cam;
 
-	private float distance = 5.0f;
+	private float distance = 3.5f;
 	private float currentX = 0.0f;
 	private float currentY = 0.0f;
 	private float sensivityX = 4.0f;
@@ -33,7 +33,7 @@ public class PlayerCamera : MonoBehaviour {
 
 	private void LateUpdate()
 	{
-		Vector3 dir = new Vector3(1.024f, 0.8f, -distance);
+		Vector3 dir = new Vector3(1f, 0.1f, -distance);
 		Quaternion rotation = Quaternion.Euler(currentY * sensitivity, currentX * sensitivity, 0);
 		camTransform.position = lookAt.position + rotation * dir;
 
