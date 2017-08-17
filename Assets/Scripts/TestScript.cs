@@ -14,6 +14,7 @@ public class TestScript : MonoBehaviour {
 	public int isStopLU;
 	public int horizAngle;
 	public int vertAngle;
+	public int isSprint;
 	private Animator anim;
 	public Transform arms;
 	public float speed = 15f;
@@ -66,6 +67,7 @@ public class TestScript : MonoBehaviour {
 //		temp2.eulerAngles += new Vector3 (Mathf.Clamp(Input.GetAxis("RightAnalogVertical") * speed, -45.0f, 60f), 0f, 0f);
 //		arms.rotation = temp2;
 //		transform.rotation = temp;
+
 		if (Input.GetKey (KeyCode.W)) {
 			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, 1.0f);
 			anim.SetFloat (anim.GetParameter (verticalMagnitude).nameHash, 1.0f);
@@ -77,7 +79,55 @@ public class TestScript : MonoBehaviour {
 			anim.SetFloat (anim.GetParameter (verticalMagnitude).nameHash, 0.0f);
 			walked = false;
 		}
-//		
+
+		if (Input.GetKey (KeyCode.LeftShift)) {
+			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, 1.0f);
+			anim.SetBool (anim.GetParameter (isSprint).nameHash, true);
+		}
+
+//		if (Input.GetKey (KeyCode.S)) {
+//			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, -1.0f);
+//			anim.SetFloat (anim.GetParameter (verticalMagnitude).nameHash, 1.0f);
+//			anim.SetBool (anim.GetParameter (isStopRU).nameHash, false);
+//			walked = true;
+//		} else if (!Input.GetKey(KeyCode.S) && walked) {
+//			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, 0.0f);
+//			anim.SetBool (anim.GetParameter (isStopRU).nameHash, true);			
+//			anim.SetFloat (anim.GetParameter (verticalMagnitude).nameHash, 0.0f);
+//			walked = false;
+//		}
+//
+//		if (Input.GetKey (KeyCode.D)) {
+//			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, 1.0f);
+//			anim.SetFloat (anim.GetParameter (horizontalMagnitude).nameHash, 1.0f);
+//			anim.SetBool (anim.GetParameter (isStopRU).nameHash, false);
+//			walked = true;
+//		} else if (!Input.GetKey(KeyCode.D) && walked) {
+//			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, 0.0f);
+//			anim.SetBool (anim.GetParameter (isStopRU).nameHash, true);			
+//			anim.SetFloat (anim.GetParameter (horizontalMagnitude).nameHash, 0.0f);
+//			walked = false;
+//		}
+//
+//		if (Input.GetKey (KeyCode.A)) {
+//			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, -1.0f);
+//			anim.SetFloat (anim.GetParameter (horizontalMagnitude).nameHash, 1.0f);
+//			anim.SetBool (anim.GetParameter (isStopRU).nameHash, false);
+//			walked = true;
+//		} else if (!Input.GetKey(KeyCode.A) && walked) {
+//			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, 0.0f);
+//			anim.SetBool (anim.GetParameter (isStopRU).nameHash, true);			
+//			anim.SetFloat (anim.GetParameter (horizontalMagnitude).nameHash, 0.0f);
+//			walked = false;
+//		}
+//
+//
+		if (Input.GetMouseButton (0)) {
+			anim.SetBool (anim.GetParameter (shootIndex).nameHash, true);
+		} else {
+			anim.SetBool (anim.GetParameter (shootIndex).nameHash, false);
+		}
+
 		yAimOffset += Input.GetAxis("Vertical") * sensitivity;
 		anim.SetFloat (anim.GetParameter (vertAngle).nameHash, yAimOffset);
 		xAimOffset += Input.GetAxis("Horizontal") * sensitivity;
