@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Lean.Touch;
 
-public class TestScript : MonoBehaviour {
+public class CharacterController : MonoBehaviour {
 	public int inputMagnitude;
 	public int verticalMagnitude;
 	public int horizontalMagnitude;
@@ -32,49 +31,12 @@ public class TestScript : MonoBehaviour {
 	private bool walkedLeft = false;
 	private bool walkedRight = false;
 	private bool isSprinting = false;
+
 	void Start () {
 		anim = GetComponent<Animator> ();
 	}
-	
-	void Fixedupdate () {
-
-	}
 
 	void Update () {
-//		if (Input.GetAxis("LeftAnalogVertical") <= -1.0f) {
-//			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, 1.0f);
-//			anim.SetFloat (anim.GetParameter (verticalMagnitude).nameHash, 1.0f);
-//		} else if (Input.GetAxis("LeftAnalogVertical") <= 0.0f && Input.GetAxis("LeftAnalogVertical") >= -1.0f) {
-//			anim.SetFloat (anim.GetParameter (verticalMagnitude).nameHash, 0.0f);
-//		}
-//
-//		if (Input.GetAxis("LeftAnalogVertical") >= 1.0f) {
-//			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, 1.0f);
-//			anim.SetFloat (anim.GetParameter (verticalMagnitude).nameHash, -1.0f);
-//		} else if (Input.GetAxis("LeftAnalogVertical") >= 0.0f && Input.GetAxis("LeftAnalogVertical") <= 1.0f) {
-//			anim.SetFloat (anim.GetParameter (verticalMagnitude).nameHash, 0.0f);
-//		}
-//		if (Input.GetAxis("LeftAnalogHorizontal") <= -1.0f) {
-//			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, 1.0f);
-//			anim.SetFloat (anim.GetParameter (horizontalMagnitude).nameHash, -1.0f);
-//		} else if (Input.GetAxis("LeftAnalogHorizontal") <= 0.0f && Input.GetAxis("LeftAnalogHorizontal") >= -1.0f) {
-//			anim.SetFloat (anim.GetParameter (horizontalMagnitude).nameHash, 0.0f);
-//		}
-//		if (Input.GetAxis("LeftAnalogHorizontal") >= 1.0f) {
-//			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, 1.0f);
-//			anim.SetFloat (anim.GetParameter (horizontalMagnitude).nameHash, 1.0f);
-//		} else if (Input.GetAxis("LeftAnalogHorizontal") >= 0.0f && Input.GetAxis("LeftAnalogHorizontal") <= 1.0f) {
-//			anim.SetFloat (anim.GetParameter (horizontalMagnitude).nameHash, 0.0f);
-//		}
-//		if (Input.GetButton("AButton")) {
-//			anim.SetBool (anim.GetParameter (shootIndex).nameHash, true);
-//		} else {
-//			anim.SetBool (anim.GetParameter (shootIndex).nameHash, false);
-//		}
-//		temp.eulerAngles += new Vector3(0f, Mathf.Floor(Input.GetAxis("RightAnalogHorizontal")) * speed, 0f);
-//		temp2.eulerAngles += new Vector3 (Mathf.Clamp(Input.GetAxis("RightAnalogVertical") * speed, -45.0f, 60f), 0f, 0f);
-//		arms.rotation = temp2;
-//		transform.rotation = temp;
 		if (Input.GetKey (KeyCode.LeftShift)) {
 			anim.SetBool (anim.GetParameter (isSprint).nameHash, true);
 			isSprinting = true;
