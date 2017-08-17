@@ -12,9 +12,14 @@ public class TestScript : MonoBehaviour {
 	public int shootIndex;
 	public int isStopRU;
 	public int isStopLU;
+	public int horizAngle;
+	public int vertAngle;
 	private Animator anim;
 	public Transform arms;
 	public float speed = 15f;
+	public float sensitivity = 1f;
+	private float yAimOffset;
+	private float xAimOffset;
 //	Quaternion temp = Quaternion.Inverse(Quaternion.identity);
 //	Quaternion temp2 = Quaternion.Inverse(Quaternion.identity);
 	private bool walked = false;
@@ -27,7 +32,6 @@ public class TestScript : MonoBehaviour {
 	}
 
 	void Update () {
-//		//Debug.Log (anim.GetCurrentAnimatorStateInfo (0).fullPathHash);
 //		if (Input.GetAxis("LeftAnalogVertical") <= -1.0f) {
 //			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, 1.0f);
 //			anim.SetFloat (anim.GetParameter (verticalMagnitude).nameHash, 1.0f);
@@ -73,5 +77,10 @@ public class TestScript : MonoBehaviour {
 			anim.SetFloat (anim.GetParameter (verticalMagnitude).nameHash, 0.0f);
 			walked = false;
 		}
+//		
+		yAimOffset += Input.GetAxis("Vertical") * sensitivity;
+		anim.SetFloat (anim.GetParameter (vertAngle).nameHash, yAimOffset);
+		xAimOffset += Input.GetAxis("Horizontal") * sensitivity;
+		anim.SetFloat (anim.GetParameter (horizAngle).nameHash, xAimOffset);
 	}
 }
