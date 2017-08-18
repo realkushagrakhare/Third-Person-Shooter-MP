@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class CharacterController : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
 	public int inputMagnitude;
 	public int verticalMagnitude;
 	public int horizontalMagnitude;
@@ -23,7 +23,6 @@ public class CharacterController : MonoBehaviour {
 	public float xAimOffset;
 
 	private Animator anim;
-	private float previousXRot = -1.0f;
 	private float previousYRot = -1.0f;
 
 	private bool walked = false;
@@ -39,9 +38,7 @@ public class CharacterController : MonoBehaviour {
 	void Update () {
 		if (Input.GetKey (KeyCode.LeftShift)) {
 			anim.SetBool (anim.GetParameter (isSprint).nameHash, true);
-			anim.SetFloat (anim.GetParameter (verticalMagnitude).nameHash, 0.0f);
 			anim.SetFloat (anim.GetParameter (vertAngle).nameHash, 0.0f);
-
 			isSprinting = true;
 		} else if (!Input.GetKey (KeyCode.LeftShift) && isSprinting) {
 			anim.SetBool (anim.GetParameter (isSprint).nameHash, false);
@@ -80,6 +77,7 @@ public class CharacterController : MonoBehaviour {
 		if (Input.GetKey (KeyCode.D) && !isSprinting) {
 			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, 1.0f);
 			anim.SetFloat (anim.GetParameter (horizontalMagnitude).nameHash, 1.0f);
+			anim.SetFloat (anim.GetParameter (walkStartAngle).nameHash, 90.0f);
 			anim.SetBool (anim.GetParameter (isStopRU).nameHash, false);
 			walkedRight = true;
 		} else if (!Input.GetKey(KeyCode.D) && walkedRight) {
@@ -87,12 +85,14 @@ public class CharacterController : MonoBehaviour {
 			if (!walkedBack && !walkedLeft && !walked)
 				anim.SetBool (anim.GetParameter (isStopRU).nameHash, true);			
 			anim.SetFloat (anim.GetParameter (horizontalMagnitude).nameHash, 0.0f);
+			anim.SetFloat (anim.GetParameter (walkStopAngle).nameHash, 0.0f);
 			walkedRight = false;
 		}
 
 		if (Input.GetKey (KeyCode.A) && !isSprinting) {
 			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, 1.0f);
 			anim.SetFloat (anim.GetParameter (horizontalMagnitude).nameHash, -1.0f);
+			anim.SetFloat (anim.GetParameter (walkStartAngle).nameHash, -90.0f);
 			anim.SetBool (anim.GetParameter (isStopRU).nameHash, false);
 			walkedLeft = true;
 		} else if (!Input.GetKey (KeyCode.A) && walkedLeft) {
@@ -100,6 +100,7 @@ public class CharacterController : MonoBehaviour {
 			if (!walkedBack && !walked && !walkedRight)
 				anim.SetBool (anim.GetParameter (isStopRU).nameHash, true);			
 			anim.SetFloat (anim.GetParameter (horizontalMagnitude).nameHash, 0.0f);
+			anim.SetFloat (anim.GetParameter (walkStopAngle).nameHash, 0.0f);
 			walkedLeft = false;
 		}
 
@@ -108,9 +109,10 @@ public class CharacterController : MonoBehaviour {
 		} else {
 			anim.SetBool (anim.GetParameter (shootIndex).nameHash, false);
 		}
+		yAimOffset += Input.GetAxis ("Vertical") * sensitivity;
 
 		if (Input.GetAxis ("Vertical") != previousYRot && !isSprinting) {
-			yAimOffset += Input.GetAxis ("Vertical") * sensitivity;
+			yAimOffset = Mathf.Clamp (yAimOffset, -50f, 50f);
 			anim.SetFloat (anim.GetParameter (vertAngle).nameHash, yAimOffset);
 			previousYRot = Input.GetAxis ("Vertical");
 		} 
