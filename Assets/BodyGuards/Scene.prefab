@@ -9780,21 +9780,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1404665436415634}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9478a71fbe4d745d99b9aca0e472a751, type: 3}
+  m_Script: {fileID: 11500000, guid: 84bbbac6231f242419a6276442176f9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputMagnitude: 8
-  verticalMagnitude: 4
-  horizontalMagnitude: 3
-  shootIndex: 19
-  isStopRU: 5
-  isStopLU: 6
-  horizAngle: 9
-  vertAngle: 10
-  isSprint: 21
-  arms: {fileID: 4183208837938536}
-  speed: 5
-  sensitivity: 0.3
+  inputMagnitude: 0
+  verticalMagnitude: 0
+  horizontalMagnitude: 0
+  walkStartAngle: 0
+  walkStopAngle: 0
+  shootIndex: 0
+  isStopRU: 0
+  isStopLU: 0
+  horizAngle: 0
+  vertAngle: 0
+  isSprint: 0
+  arms: {fileID: 0}
+  speed: 15
+  sensitivity: 1
+  yAimOffset: 0
+  xAimOffset: 0
 --- !u!124 &124054124362148536
 Behaviour:
   m_ObjectHideFlags: 1

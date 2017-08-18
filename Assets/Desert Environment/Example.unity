@@ -1843,7 +1843,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 1
+  m_Convex: 0
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
@@ -60468,6 +60468,7 @@ GameObject:
   - component: {fileID: 1236307536}
   - component: {fileID: 1236307535}
   - component: {fileID: 1236307537}
+  - component: {fileID: 1236307538}
   m_Layer: 0
   m_Name: SkelMesh_Bodyguard_03
   m_TagString: Untagged
@@ -60483,7 +60484,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1236307533}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.42833018, y: -1.4568505, z: 0.08076486}
+  m_LocalPosition: {x: 0.42833018, y: -1.4568505, z: 3.765}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2031251024}
@@ -60549,10 +60550,25 @@ BoxCollider:
   m_GameObject: {fileID: 1236307533}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.78949213, y: 1.865837, z: 1}
-  m_Center: {x: -0.031082332, y: 0.9002345, z: 0}
+  m_Size: {x: 0.78949213, y: 1.6686649, z: 1}
+  m_Center: {x: -0.031082332, y: 1.0261388, z: 0}
+--- !u!54 &1236307538
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1236307533}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1241246681
 GameObject:
   m_ObjectHideFlags: 0

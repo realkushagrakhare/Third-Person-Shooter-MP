@@ -39,6 +39,9 @@ public class CharacterController : MonoBehaviour {
 	void Update () {
 		if (Input.GetKey (KeyCode.LeftShift)) {
 			anim.SetBool (anim.GetParameter (isSprint).nameHash, true);
+			anim.SetFloat (anim.GetParameter (verticalMagnitude).nameHash, 0.0f);
+			anim.SetFloat (anim.GetParameter (vertAngle).nameHash, 0.0f);
+
 			isSprinting = true;
 		} else if (!Input.GetKey (KeyCode.LeftShift) && isSprinting) {
 			anim.SetBool (anim.GetParameter (isSprint).nameHash, false);
