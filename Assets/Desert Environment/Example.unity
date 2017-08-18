@@ -45815,7 +45815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookAt: {fileID: 134902944}
   camTransform: {fileID: 932824666}
-  sensitivity: 0.02
+  sensitivity: 0.1
 --- !u!1 &936760573
 GameObject:
   m_ObjectHideFlags: 0
@@ -60520,7 +60520,7 @@ MonoBehaviour:
   isSprint: 21
   arms: {fileID: 200509571}
   speed: 5
-  sensitivity: 0.02
+  sensitivity: 0.1
   yAimOffset: 0
   xAimOffset: 0
 --- !u!95 &1236307536

@@ -53,7 +53,8 @@ public class CharacterController : MonoBehaviour {
 		} else if (!Input.GetKey(KeyCode.W) && walked) {
 			anim.SetFloat (anim.GetParameter (walkStopAngle).nameHash, 0.0f);
 			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, 0.0f);
-			anim.SetBool (anim.GetParameter (isStopRU).nameHash, true);			
+			if (!walkedBack && !walkedLeft && !walkedRight)
+				anim.SetBool (anim.GetParameter (isStopRU).nameHash, true);			
 			anim.SetFloat (anim.GetParameter (verticalMagnitude).nameHash, 0.0f);
 			walked = false;
 		}
@@ -67,7 +68,8 @@ public class CharacterController : MonoBehaviour {
 		} else if (!Input.GetKey(KeyCode.S) && walkedBack) {
 			anim.SetFloat (anim.GetParameter (walkStopAngle).nameHash, 180.0f);
 			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, 0.0f);
-			anim.SetBool (anim.GetParameter (isStopRU).nameHash, true);			
+			if (!walked && !walkedLeft && !walkedRight)
+				anim.SetBool (anim.GetParameter (isStopRU).nameHash, true);			
 			anim.SetFloat (anim.GetParameter (verticalMagnitude).nameHash, 0.0f);
 			walkedBack = false;
 		}
@@ -79,7 +81,8 @@ public class CharacterController : MonoBehaviour {
 			walkedRight = true;
 		} else if (!Input.GetKey(KeyCode.D) && walkedRight) {
 			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, 0.0f);
-			anim.SetBool (anim.GetParameter (isStopRU).nameHash, true);			
+			if (!walkedBack && !walkedLeft && !walked)
+				anim.SetBool (anim.GetParameter (isStopRU).nameHash, true);			
 			anim.SetFloat (anim.GetParameter (horizontalMagnitude).nameHash, 0.0f);
 			walkedRight = false;
 		}
@@ -91,7 +94,8 @@ public class CharacterController : MonoBehaviour {
 			walkedLeft = true;
 		} else if (!Input.GetKey (KeyCode.A) && walkedLeft) {
 			anim.SetFloat (anim.GetParameter (inputMagnitude).nameHash, 0.0f);
-			anim.SetBool (anim.GetParameter (isStopRU).nameHash, true);			
+			if (!walkedBack && !walked && !walkedRight)
+				anim.SetBool (anim.GetParameter (isStopRU).nameHash, true);			
 			anim.SetFloat (anim.GetParameter (horizontalMagnitude).nameHash, 0.0f);
 			walkedLeft = false;
 		}
