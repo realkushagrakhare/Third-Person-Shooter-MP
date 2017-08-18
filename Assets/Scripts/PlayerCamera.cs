@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour {
-	private const float Y_ANGLE_MIN = -50.0f;
-	private const float Y_ANGLE_MAX = 50.0f;
+	private const float Y_ANGLE_MIN = -450.0f;
+	private const float Y_ANGLE_MAX = 450.0f;
 
 	public Transform lookAt;
 	public Transform camTransform;
@@ -34,7 +34,7 @@ public class PlayerCamera : MonoBehaviour {
 	private void LateUpdate()
 	{
 		Vector3 dir = new Vector3(1f, 0.1f, -distance);
-		Quaternion rotation = Quaternion.Euler(currentY * sensitivity, currentX * sensitivity, 0);
+		Quaternion rotation = Quaternion.Euler(-currentY * sensitivity, currentX * sensitivity, 0);
 		camTransform.position = lookAt.position + rotation * dir;
 
 		camTransform.LookAt(lookAt.position);
