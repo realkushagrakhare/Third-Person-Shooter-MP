@@ -10,7 +10,7 @@ public class PlayerCamera : MonoBehaviour {
 	public Transform camTransform;
 	public float sensitivity;
 
-	private float distance = 3.5f;
+	private float distance = 2.5f;
 	private float currentX = 0.0f;
 	private float currentY = 0.0f;
 
